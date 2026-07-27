@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
@@ -7,9 +8,11 @@ import { Button } from '../components/common/Button';
 export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log('Login submitted:', data);
+    navigate('/dashboard');
   };
 
   return (
