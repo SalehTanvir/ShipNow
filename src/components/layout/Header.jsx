@@ -5,7 +5,7 @@ import { Button } from '../common/Button';
 
 export function Header({ onMenuClick }) {
   return (
-    <header className="sticky top-0 z-30 bg-[#f8f9fc] lg:bg-transparent pt-4 lg:pt-8 pb-4 px-4 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <header className="bg-[#f8f9fc] lg:bg-transparent pt-4 lg:pt-8 pb-4 px-4 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div className="flex items-center gap-4">
         {/* Mobile Menu Button */}
         <button 
