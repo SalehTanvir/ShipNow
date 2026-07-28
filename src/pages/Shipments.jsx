@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { LayoutGrid, List, Plus } from 'lucide-react';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { ShipmentsGridView } from '../components/shipments/ShipmentsGridView';
@@ -8,6 +8,7 @@ import { mockShipments } from '../data/mockShipments';
 
 export default function Shipments() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const currentView = searchParams.get('view') === 'table' ? 'table' : 'grid';
 
   const setView = (view) => {
@@ -47,7 +48,10 @@ export default function Shipments() {
               </button>
             </div>
             
-            <button className="flex items-center gap-2 bg-[#1e293b] text-white px-4 py-2.5 rounded-xl text-[14px] font-medium hover:bg-slate-800 transition-colors shadow-sm">
+            <button 
+              onClick={() => navigate('/shipments/create')}
+              className="flex items-center gap-2 bg-[#1e293b] text-white px-4 py-2.5 rounded-xl text-[14px] font-medium hover:bg-slate-800 transition-colors shadow-sm"
+            >
               <Plus className="w-4 h-4" />
               New Shipment
             </button>
