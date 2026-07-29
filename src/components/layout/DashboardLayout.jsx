@@ -18,7 +18,7 @@ export function DashboardLayout({ children, showHeader = true }) {
         {showHeader ? (
           <Header onMenuClick={() => setIsSidebarOpen(true)} />
         ) : (
-          <div className="lg:hidden px-4 pt-4 pb-2 flex justify-start">
+          <div className="md:hidden px-4 pt-4 pb-2 flex justify-start">
             <button 
               onClick={() => setIsSidebarOpen(true)}
               className="p-2 -ml-2 text-slate-600 hover:bg-slate-100 rounded-lg"

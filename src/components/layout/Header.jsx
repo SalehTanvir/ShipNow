@@ -10,7 +10,7 @@ export function Header({ onMenuClick }) {
         {/* Mobile Menu Button */}
         <button 
           onClick={onMenuClick}
-          className="lg:hidden p-2 -ml-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          className="md:hidden p-2 -ml-2 text-slate-600 hover:bg-slate-100 rounded-lg"
         >
           <Menu className="w-6 h-6" />
         </button>

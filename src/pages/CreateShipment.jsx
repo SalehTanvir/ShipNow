@@ -38,7 +38,7 @@ export default function CreateShipment() {
             </div>
           </div>
           {/* Mobile Menu Button - usually handled by layout but we hide the layout's and put it here to match design */}
-          <button className="lg:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
+          <button className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
              <Menu className="w-6 h-6" />
           </button>
         </div>
