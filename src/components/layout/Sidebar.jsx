@@ -94,13 +94,17 @@ export function Sidebar({ isOpen, onClose }) {
                 title={item.name}
                 className={({ isActive }) => cn(
                   "flex items-center gap-3 px-4 md:px-0 lg:px-4 py-3 md:justify-center lg:justify-start rounded-xl text-[14px] font-medium transition-colors",
-                  isActive || item.path === '/dashboard' 
-                    ? "bg-purple-100/50 text-[#7c3aed]" 
+                  isActive
+                    ? "bg-purple-100/50 text-[#7c3aed]"
                     : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
                 )}
               >
-                <item.icon className={cn("w-5 h-5 flex-shrink-0", item.path === '/dashboard' ? "text-[#7c3aed]" : "text-slate-400")} />
-                <span className="block md:hidden lg:block">{item.name}</span>
+                {({ isActive }) => (
+                  <>
+                    <item.icon className={cn("w-5 h-5 flex-shrink-0", isActive ? "text-[#7c3aed]" : "text-slate-400")} />
+                    <span className="block md:hidden lg:block">{item.name}</span>
+                  </>
+                )}
               </NavLink>
             ))}
           </nav>
@@ -148,12 +152,6 @@ export function Sidebar({ isOpen, onClose }) {
           </div>
         </div>
 
-        <div className="px-6 md:px-2 lg:px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium flex flex-wrap gap-x-3 gap-y-1 justify-center opacity-80 md:hidden lg:flex">
-          <span>Copyright © 2025 Peterdraw</span>
-          <a href="#" className="hover:text-slate-600">Privacy Policy</a>
-          <a href="#" className="hover:text-slate-600">Term and conditions</a>
-          <a href="#" className="hover:text-slate-600">Contact</a>
-        </div>
 
       </div>
     </>

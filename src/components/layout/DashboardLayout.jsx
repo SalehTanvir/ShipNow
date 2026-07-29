@@ -4,7 +4,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { Menu } from 'lucide-react';
 
-export function DashboardLayout({ children, showHeader = true }) {
+export function DashboardLayout({ children, showHeader = true, showFooter = true }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -30,7 +30,7 @@ export function DashboardLayout({ children, showHeader = true }) {
         <main className={`flex-1 p-4 lg:p-8 ${showHeader ? 'pt-0' : ''} overflow-x-hidden`}>
           {children}
         </main>
-        <Footer />
+        {showFooter && <Footer />}
       </div>
     </div>
   );

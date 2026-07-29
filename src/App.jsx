@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Shipments from './pages/Shipments';
 import CreateShipment from './pages/CreateShipment';
 import Warehouse from './pages/Warehouse';
+import InvoicesBilling from './pages/InvoicesBilling';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/shipments" element={<Shipments />} />
         <Route path="/shipments/create" element={<CreateShipment />} />
         <Route path="/warehouse" element={<Warehouse />} />
+        <Route path="/invoices" element={<InvoicesBilling />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
