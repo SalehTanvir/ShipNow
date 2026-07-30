@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Filter, ChevronDown, Package, Clock, Truck, CheckCircle2, ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import { StatCard } from '../dashboard/StatCard';
+import { CompanyLogo } from '../common/CompanyLogo';
 
 export function ShipmentsTableView({ data }) {
   const tabs = ['All', 'Completed', 'Delivery', 'Pending'];
@@ -23,17 +24,6 @@ export function ShipmentsTableView({ data }) {
       case 'Processing': return 'Pending';
       default: return status;
     }
-  };
-
-  const getCompanyLogo = (company) => {
-    const colors = ['bg-blue-600', 'bg-emerald-600', 'bg-purple-600', 'bg-slate-800', 'bg-rose-600'];
-    const charCode = company.charCodeAt(0) + company.charCodeAt(company.length - 1);
-    const bgClass = colors[charCode % colors.length];
-    return (
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white flex-shrink-0 ${bgClass}`}>
-        <span className="font-bold text-[13px]">{company.charAt(0)}</span>
-      </div>
-    );
   };
 
   return (
@@ -145,7 +135,7 @@ export function ShipmentsTableView({ data }) {
                   </td>
                   <td className="py-4 px-5 align-top">
                     <div className="flex items-center gap-3">
-                      {getCompanyLogo(row.company)}
+                      <CompanyLogo name={row.company} className="w-8 h-8" />
                       <div className="flex flex-col">
                         <span className="text-[13px] font-bold text-slate-900">{row.company}</span>
                         <span className="text-[11px] text-slate-400 mt-0.5">{row.category}</span>

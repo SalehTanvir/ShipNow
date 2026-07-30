@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Filter, MoreHorizontal } from 'lucide-react';
 import clsx from 'clsx';
+import { CompanyLogo } from '../common/CompanyLogo';
 
 export function RecentShipmentsTable() {
   const shipments = [
@@ -59,8 +60,13 @@ export function RecentShipmentsTable() {
                   <span className="text-[13px] font-semibold text-[#7c3aed]">{shipment.id}</span>
                 </td>
                 <td className="py-3.5 px-4">
-                  <p className="text-[13px] font-bold text-slate-900 leading-tight">{shipment.company}</p>
-                  <p className="text-[11px] text-slate-500">{shipment.category}</p>
+                  <div className="flex items-center gap-2.5">
+                    <CompanyLogo name={shipment.company} className="w-8 h-8" />
+                    <div>
+                      <p className="text-[13px] font-bold text-slate-900 leading-tight">{shipment.company}</p>
+                      <p className="text-[11px] text-slate-500">{shipment.category}</p>
+                    </div>
+                  </div>
                 </td>
                 <td className="py-3.5 px-4 text-[13px] font-semibold text-slate-700">{shipment.carrier}</td>
                 <td className="py-3.5 px-4 text-[13px] font-medium text-slate-600">{shipment.route}</td>

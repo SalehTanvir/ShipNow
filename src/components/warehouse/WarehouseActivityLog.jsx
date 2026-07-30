@@ -25,7 +25,7 @@ export function WarehouseActivityLog() {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-5 lg:p-6 border border-slate-100 h-full flex flex-col hover:shadow-sm transition-shadow">
+    <div className="bg-white rounded-[12px] p-4 lg:p-5 border border-slate-100 h-full flex flex-col hover:shadow-sm transition-shadow">
       <div className="flex justify-between items-start mb-6">
         <h3 className="text-[15px] font-bold text-slate-900">Warehouse Activity Log</h3>
         <button className="text-slate-400 hover:text-slate-600">

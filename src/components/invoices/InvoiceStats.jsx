@@ -1,45 +1,48 @@
 import React from 'react';
-import { CheckCircle, XCircle, Clock, AlertCircle } from 'lucide-react';
+import overdueInvoicesIcon from '../icons/overdueInvoicesIcon.svg';
+import unpaidInvoicesIcon from '../icons/unpaidInvoicesIcon.svg';
+import paidInvoiceIcon from '../icons/paidInvoiceIcon.svg';
+import pandingInvoicesIcon from '../icons/pandingInvoicesIcon.svg';
 import { invoiceStats } from '../../data/mockInvoices';
 
 const iconMap = {
-  'check-circle': CheckCircle,
-  'x-circle': XCircle,
-  'clock': Clock,
-  'alert-circle': AlertCircle,
+  paid: paidInvoiceIcon,
+  unpaid: unpaidInvoicesIcon,
+  pending: pandingInvoicesIcon,
+  overdue: overdueInvoicesIcon,
 };
 
 export function InvoiceStats() {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
       {invoiceStats.map((stat) => {
-        const Icon = iconMap[stat.icon];
+        const iconSrc = iconMap[stat.id];
         return (
           <div
             key={stat.id}
-            className="bg-white rounded-2xl p-4 lg:p-5 border border-slate-100 hover:shadow-sm transition-shadow"
+            className="bg-white rounded-2xl p-3.5 sm:p-4 lg:p-5 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 hover:shadow-sm transition-shadow min-w-0"
           >
-            <div className="flex items-start justify-between gap-3 mb-3">
-              <p className="text-[12px] lg:text-[13px] font-medium text-slate-500 leading-tight">{stat.label}</p>
-              <div className="w-9 h-9 lg:w-10 lg:h-10 bg-[#f0edff] rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon className="w-4 h-4 lg:w-5 lg:h-5 text-[#7b5cfa]" />
-              </div>
+            {/* Icon — top left on mobile, left on desktop */}
+            <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-[50px] lg:h-[50px] flex-shrink-0 rounded-xl overflow-hidden shadow-sm mb-1 sm:mb-0">
+              <img src={iconSrc} alt={stat.label} className="w-full h-full object-cover" />
             </div>
-            <p className="text-[22px] lg:text-[28px] font-extrabold text-slate-900 leading-none mb-2">
-              {stat.amount}
-            </p>
-            <p className="text-[11px] lg:text-[12px] text-slate-400 font-medium flex items-center flex-wrap gap-1">
-              from{' '}
-              <span className="inline-flex items-center bg-[#f0edff] text-[#7b5cfa] font-bold px-1.5 py-0.5 rounded-md text-[10px] lg:text-[11px]">
-                {stat.count}
-              </span>{' '}
-              invoices
-              {stat.isOverdue && (
-                <span className="inline-flex items-center bg-rose-50 text-rose-500 border border-rose-100 font-bold px-1.5 py-0.5 rounded-md text-[10px] lg:text-[11px]">
-                  overdue
+
+            {/* Info — stacked left on mobile, aligned right on desktop */}
+            <div className="flex flex-col items-start sm:items-end text-left sm:text-right min-w-0 w-full sm:w-auto">
+              <p className="text-[11px] lg:text-[12px] font-medium text-slate-400 leading-tight mb-1">
+                {stat.label}
+              </p>
+              <p className="text-[18px] sm:text-[22px] lg:text-[24px] xl:text-[26px] font-bold text-slate-900 leading-none mb-1 sm:mb-1.5">
+                {stat.amount}
+              </p>
+              <p className="text-[10px] lg:text-[11px] text-slate-400 font-medium flex items-center justify-start sm:justify-end gap-1">
+                from
+                <span className="inline-flex items-center bg-emerald-50 text-emerald-600 font-bold px-1.5 py-0.5 rounded text-[10px] lg:text-[11px]">
+                  {stat.count}
                 </span>
-              )}
-            </p>
+                invoices
+              </p>
+            </div>
           </div>
         );
       })}

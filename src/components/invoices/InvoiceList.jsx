@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Search, SlidersHorizontal, Plus, ChevronDown, FileText } from 'lucide-react';
 import { mockInvoices } from '../../data/mockInvoices';
 import { cn } from '../../utils/cn';
+import { CompanyLogo } from '../common/CompanyLogo';
 
 const statusConfig = {
   Paid: 'bg-emerald-50 text-emerald-600 border border-emerald-100',
@@ -166,12 +167,7 @@ export function InvoiceList({ selectedId, onSelect, compact = false }) {
                   {/* Company */}
                   <td className="py-3 pr-3 hidden sm:table-cell">
                     <div className="flex items-center gap-2.5">
-                      <div
-                        className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0"
-                        style={{ backgroundColor: inv.companyColor }}
-                      >
-                        {inv.companyLogo}
-                      </div>
+                      <CompanyLogo name={inv.company} className="w-7 h-7" />
                       <span className="text-[13px] font-medium text-slate-700 truncate max-w-[80px]">{inv.company}</span>
                     </div>
                   </td>

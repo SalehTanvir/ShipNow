@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronLeft, ChevronDown } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { TAX_RATE } from '../../data/mockInvoices';
+import { CompanyLogo } from '../common/CompanyLogo';
 
 const statusConfig = {
   Paid:    'bg-emerald-50 text-emerald-600 border border-emerald-100',
@@ -108,7 +109,10 @@ export function InvoiceDetails({ invoice, onBack, showBackButton, isMobile = fal
             <div key={label}>
               <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-2">{label}</p>
               <div className="space-y-0.5">
-                <p className="text-[13px] font-extrabold text-slate-900 leading-tight">{data.name}</p>
+                <div className="flex items-center gap-2 mb-1">
+                  <CompanyLogo name={data.name} className="w-6 h-6" />
+                  <p className="text-[13px] font-extrabold text-slate-900 leading-tight">{data.name}</p>
+                </div>
                 <p className="text-[11px] text-slate-500 break-all">{data.email}</p>
                 <p className="text-[11px] text-slate-500 leading-relaxed">{data.address}</p>
                 <p className="text-[11px] text-slate-500">{data.phone}</p>

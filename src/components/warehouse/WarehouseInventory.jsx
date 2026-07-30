@@ -5,36 +5,89 @@ import { cn } from '../../utils/cn';
 
 export function WarehouseInventory() {
   return (
-    <div className="bg-white rounded-2xl p-5 lg:p-6 border border-slate-100 h-full flex flex-col hover:shadow-sm transition-shadow">
-      <div className="flex justify-between items-start mb-6">
+    <div className="bg-white rounded-[12px] p-4 md:p-5 border border-slate-100 w-full h-full flex flex-col hover:shadow-sm transition-shadow">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-4">
         <div>
           <h3 className="text-[15px] font-bold text-slate-900">Warehouse Inventory</h3>
-          <div className="flex items-baseline gap-1 mt-2">
-            <span className="text-[28px] font-bold text-slate-900 leading-none">10,000</span>
-            <span className="text-[13px] text-slate-400 font-medium">packages</span>
+          <div className="flex items-baseline gap-1 mt-0.5 sm:hidden">
+            <span className="text-[20px] font-bold text-slate-900 leading-none">10,000</span>
+            <span className="text-[11px] text-slate-400 font-medium">packages</span>
           </div>
         </div>
-        <button className="text-slate-400 hover:text-slate-600">
-          <MoreHorizontal className="w-5 h-5" />
-        </button>
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:flex items-baseline gap-1">
+            <span className="text-[18px] md:text-[22px] font-bold text-slate-900 leading-none">10,000</span>
+            <span className="text-[11px] md:text-[12px] text-slate-400 font-medium">packages</span>
+          </div>
+          <button className="text-slate-400 hover:text-slate-600 transition-colors">
+            <MoreHorizontal className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
-      <div className="flex-1 flex items-end justify-between gap-2 lg:gap-4 mt-4">
+      {/* ── MOBILE HORIZONTAL LIST VIEW (sm:hidden) ── */}
+      <div className="sm:hidden flex flex-col gap-3.5 pt-1">
         {mockInventory.map((item, idx) => (
-          <div key={idx} className="flex flex-col items-center flex-1 w-full max-w-[60px]">
-            <span className="text-[10px] lg:text-[11px] text-slate-400 font-medium text-center mb-3 min-h-[32px]">{item.category}</span>
-            <div className="w-full h-[140px] lg:h-[180px] bg-slate-50 rounded-t-lg relative overflow-hidden">
-              <div 
-                className={cn("absolute bottom-0 left-0 w-full rounded-t-lg transition-all duration-500", item.color)}
-                style={{ 
-                  height: `${item.percentage * 2.5}%`,
-                  backgroundImage: item.isStriped ? `repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.2) 5px, rgba(255,255,255,0.2) 10px)` : 'none'
+          <div key={idx} className="flex items-center justify-between gap-3">
+            {/* Horizontal Bar track */}
+            <div className="flex-1 h-[26px] bg-slate-50 rounded-[6px] relative overflow-hidden">
+              <div
+                className={cn(
+                  'h-full rounded-[6px] transition-all duration-700',
+                  item.color
+                )}
+                style={{
+                  width: `${Math.max(item.percentage * 3, 18)}%`,
+                  backgroundImage: item.isStriped
+                    ? `repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.25) 4px, rgba(255,255,255,0.25) 8px)`
+                    : 'none',
                 }}
               />
             </div>
-            <div className="mt-3 text-center">
-              <span className="text-[11px] lg:text-[12px] font-bold text-slate-900 block">{item.percentage}%</span>
-              <span className="text-[10px] lg:text-[11px] text-slate-400">{item.value}</span>
+
+            {/* Label + stats aligned to right */}
+            <div className="text-right shrink-0 min-w-[110px]">
+              <p className="text-[11px] font-medium text-slate-500 leading-tight mb-0.5">{item.category}</p>
+              <div className="flex items-baseline justify-end gap-1.5 leading-none">
+                <span className="text-[11px] font-bold text-slate-900">{item.percentage}%</span>
+                <span className="text-[10px] text-slate-400 font-medium">{item.value}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ── TABLET / DESKTOP VERTICAL BAR CHART (hidden sm:flex) ── */}
+      <div className="hidden sm:flex flex-1 items-end justify-between gap-1.5 md:gap-3 pt-2">
+        {mockInventory.map((item, idx) => (
+          <div key={idx} className="flex flex-col items-center flex-1 min-w-0">
+            {/* Category label */}
+            <span className="text-[9px] md:text-[11px] text-slate-400 font-medium text-center leading-tight mb-2 min-h-[24px] flex items-end justify-center px-0.5">
+              {item.category}
+            </span>
+
+            {/* Bar track */}
+            <div className="w-full relative h-[110px] md:h-[135px]">
+              <div className="absolute inset-0 bg-slate-50 rounded-[6px]" />
+              <div
+                className={cn(
+                  'absolute bottom-0 left-0 w-full rounded-[6px] transition-all duration-700',
+                  item.color
+                )}
+                style={{
+                  height: `${Math.min(item.percentage * 4, 100)}%`,
+                  backgroundImage: item.isStriped
+                    ? `repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.25) 4px, rgba(255,255,255,0.25) 8px)`
+                    : 'none',
+                }}
+              />
+            </div>
+
+            {/* Percentage + value */}
+            <div className="mt-2 text-center">
+              <span className="text-[11px] md:text-[12px] font-bold text-slate-800 block leading-none">{item.percentage}%</span>
+              <span className="text-[9px] md:text-[10px] text-slate-400 font-medium mt-0.5 block">{item.value}</span>
             </div>
           </div>
         ))}

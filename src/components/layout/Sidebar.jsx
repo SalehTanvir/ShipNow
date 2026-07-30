@@ -1,20 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  BarChart2, 
-  Calendar, 
-  Package, 
-  MapPin, 
-  Home, 
-  Truck, 
-  Users, 
-  FileText,
-  MessageSquare,
-  Bell,
-  Settings,
-  ChevronDown
-} from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -22,22 +8,32 @@ const cn = (...inputs) => {
   return twMerge(clsx(inputs));
 };
 
+// SVG Icon component — renders an img tag from the icons folder
+const SvgIcon = ({ src, active }) => (
+  <img
+    src={src}
+    alt=""
+    className={cn('w-5 h-5 flex-shrink-0 transition-all', active ? 'opacity-100' : 'opacity-50')}
+    style={active ? { filter: 'invert(25%) sepia(80%) saturate(1500%) hue-rotate(250deg) brightness(80%)' } : {}}
+  />
+);
+
 const NAV_ITEMS = [
-  { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { name: 'Analytics', icon: BarChart2, path: '/analytics' },
-  { name: 'Calendar', icon: Calendar, path: '/calendar' },
-  { name: 'Shipments', icon: Package, path: '/shipments' },
-  { name: 'Tracking', icon: MapPin, path: '/tracking' },
-  { name: 'Warehouse', icon: Home, path: '/warehouse' },
-  { name: 'Fleets', icon: Truck, path: '/fleets' },
-  { name: 'Drivers', icon: Users, path: '/drivers' },
-  { name: 'Invoices & Billing', icon: FileText, path: '/invoices' },
+  { name: 'Dashboard',        icon: '/src/components/icons/dashboard_Icon.svg',           path: '/dashboard' },
+  { name: 'Analytics',        icon: '/src/components/icons/analytics_icon.svg',           path: '/analytics' },
+  { name: 'Calendar',         icon: '/src/components/icons/calender_icon.svg',            path: '/calendar' },
+  { name: 'Shipments',        icon: '/src/components/icons/shipments_icon.svg',           path: '/shipments' },
+  { name: 'Tracking',         icon: '/src/components/icons/tracking_icon.svg',            path: '/tracking' },
+  { name: 'Warehouse',        icon: '/src/components/icons/warehouse_icon.svg',           path: '/warehouse' },
+  { name: 'Fleets',           icon: '/src/components/icons/fleets_icon.svg',              path: '/fleets' },
+  { name: 'Drivers',          icon: '/src/components/icons/drivers_icon.svg',             path: '/drivers' },
+  { name: 'Invoices & Billing', icon: '/src/components/icons/invoiceAndbilling_icon.svg', path: '/invoices' },
 ];
 
 const BOTTOM_NAV_ITEMS = [
-  { name: 'Message', icon: MessageSquare, path: '/messages', badge: '19' },
-  { name: 'Notification', icon: Bell, path: '/notifications', badge: '5' },
-  { name: 'Settings', icon: Settings, path: '/settings' },
+  { name: 'Message',      icon: '/src/components/icons/message_icon.svg',      path: '/messages',      badge: '19' },
+  { name: 'Notification', icon: '/src/components/icons/notification_icon.svg', path: '/notifications', badge: '5' },
+  { name: 'Settings',     icon: '/src/components/icons/setting_icon.svg',      path: '/settings' },
 ];
 
 export function Sidebar({ isOpen, onClose }) {
@@ -109,7 +105,7 @@ export function Sidebar({ isOpen, onClose }) {
               >
                 {({ isActive }) => (
                   <>
-                    <item.icon className={cn("w-5 h-5 flex-shrink-0", isActive ? "text-[#7c3aed]" : "text-slate-400")} />
+                    <SvgIcon src={item.icon} active={isActive} />
                     <span className="block md:hidden lg:block">{item.name}</span>
                   </>
                 )}
@@ -136,7 +132,7 @@ export function Sidebar({ isOpen, onClose }) {
                 {({ isActive }) => (
                   <>
                     <div className="flex items-center gap-3 md:gap-0 lg:gap-3">
-                      <item.icon className={cn("w-5 h-5 flex-shrink-0", isActive ? "text-[#7c3aed]" : "text-slate-400")} />
+                      <SvgIcon src={item.icon} active={isActive} />
                       <span className="block md:hidden lg:block">{item.name}</span>
                     </div>
                     {item.badge && (

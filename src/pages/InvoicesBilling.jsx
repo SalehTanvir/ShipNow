@@ -21,11 +21,11 @@ export default function InvoicesBilling() {
   };
 
   return (
-    <DashboardLayout showHeader={false}>
-      <div className="max-w-[1600px] mx-auto min-h-full pt-4 lg:pt-0">
+    <DashboardLayout showHeader={false} title="Invoices & Billing">
+      <div className="max-w-[1600px] mx-auto min-h-full">
 
         {/* Page Header */}
-        <div className="mb-6">
+        <div className="mb-5 hidden md:block">
           <h1 className="text-[24px] font-bold text-slate-900 mb-1">Invoices &amp; Billing</h1>
           <div className="flex items-center gap-2 text-[13px] font-medium text-slate-500">
             <span className="text-[#7c3aed]">Dashboard</span>

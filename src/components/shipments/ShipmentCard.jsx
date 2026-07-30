@@ -1,5 +1,6 @@
 import React from 'react';
-import { Plane, Truck, Ship, Train, Box, Maximize2 } from 'lucide-react';
+import { Plane, Truck, Ship, Train, Box } from 'lucide-react';
+import { CompanyLogo } from '../common/CompanyLogo';
 
 export function ShipmentCard({ data }) {
   const getStatusColor = (status) => {
@@ -10,18 +11,6 @@ export function ShipmentCard({ data }) {
       case 'Out for Delivery': return 'bg-slate-100 text-slate-600';
       default: return 'bg-slate-100 text-slate-600';
     }
-  };
-
-  const getCompanyLogo = (company) => {
-    // Generate a deterministically styled placeholder based on company name
-    const colors = ['bg-blue-600', 'bg-emerald-600', 'bg-purple-600', 'bg-slate-800', 'bg-rose-600'];
-    const charCode = company.charCodeAt(0) + company.charCodeAt(company.length - 1);
-    const bgClass = colors[charCode % colors.length];
-    return (
-      <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white ${bgClass}`}>
-        <span className="font-bold text-[14px]">{company.charAt(0)}</span>
-      </div>
-    );
   };
 
   const getTypeIcon = (type) => {
@@ -51,7 +40,7 @@ export function ShipmentCard({ data }) {
 
       {/* Company Info */}
       <div className="flex items-center gap-3 mb-6">
-        {getCompanyLogo(data.company)}
+        <CompanyLogo name={data.company} className="w-9 h-9" />
         <div className="flex flex-col">
           <span className="text-[13px] font-bold text-slate-900">{data.company}</span>
           <span className="text-[11px] text-slate-400">{data.category}</span>

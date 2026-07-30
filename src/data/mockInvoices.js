@@ -5,9 +5,9 @@
 export const TAX_RATE = 0.08; // 8%
 
 export const invoiceStats = [
-  { id: 'paid',    label: 'Paid Invoices',    amount: '$28,890', count: 350, icon: 'check-circle' },
-  { id: 'unpaid',  label: 'Unpaid Invoices',  amount: '$16,700', count: 120, icon: 'x-circle'     },
-  { id: 'pending', label: 'Pending Invoices', amount: '$8,050',  count: 80,  icon: 'clock'        },
+  { id: 'paid', label: 'Paid Invoices', amount: '$28,890', count: 350, icon: 'check-circle' },
+  { id: 'unpaid', label: 'Unpaid Invoices', amount: '$16,700', count: 120, icon: 'x-circle' },
+  { id: 'pending', label: 'Pending Invoices', amount: '$8,050', count: 80, icon: 'clock' },
   { id: 'overdue', label: 'Overdue Invoices', amount: '$22,110', count: 245, icon: 'alert-circle', isOverdue: true },
 ];
 
@@ -22,19 +22,19 @@ export const mockInvoices = [
   // ── INV-1208 · MediaWise ─────────────────────────────────────────────────
   {
     id: 'INV-1208',
-    company: 'MediaWise', companyLogo: 'MW', companyColor: '#7c3aed',
+    company: 'Moda Wear', companyLogo: 'MW', companyColor: '#7c3aed',
     shippingId: '#SH9201478', issuedDate: 'Mar 28, 2026', dueDate: 'May 10, 2026',
     amount: 399.60, status: 'Unpaid',
     billFrom: {
-      name: 'MediaWise', email: 'accounts@mediawire.com',
+      name: 'Moda Wear', email: 'accounts@modawear.com',
       address: '6 Blunt Ave, Chicago, IL 60601, USA', phone: '+1 312-555-0160',
     },
     billTo: SHIP_TO,
     fee: 0,
     packages: [
-      { description: 'Media Display Unit',   type: 'Air Freight Express',    price: 120, qty: 2 },
-      { description: 'Campaign Print Pack',  type: 'Road Freight Standard',  price: 85,  qty: 1 },
-      { description: 'Brand Kit Package',    type: 'Road Freight Standard',  price: 55,  qty: 2 },
+      { description: 'Media Display Unit', type: 'Air Freight Express', price: 120, qty: 2 },
+      { description: 'Campaign Print Pack', type: 'Road Freight Standard', price: 85, qty: 1 },
+      { description: 'Brand Kit Package', type: 'Road Freight Standard', price: 55, qty: 2 },
     ],
     note: 'Payment is due within 30 days. Please ensure timely remittance to avoid service interruption. Late fees may apply after 3 business days past due.',
   },
@@ -52,8 +52,8 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 0,
     packages: [
-      { description: 'Pro Wireless Headset',  type: 'Air Freight Express',    price: 250, qty: 3 },
-      { description: 'USB-C Hub Pro',          type: 'Road Freight Standard',  price: 100, qty: 5 },
+      { description: 'Pro Wireless Headset', type: 'Air Freight Express', price: 250, qty: 3 },
+      { description: 'USB-C Hub Pro', type: 'Road Freight Standard', price: 100, qty: 5 },
     ],
     note: 'Payment cleared. Thank you for your business.',
   },
@@ -72,7 +72,7 @@ export const mockInvoices = [
     fee: 10,
     packages: [
       { description: 'Winter Collection Bundle', type: 'Road Freight Standard', price: 245, qty: 2 },
-      { description: 'Silk Scarf Set (×12)',      type: 'Road Freight Express',  price: 490, qty: 1 },
+      { description: 'Silk Scarf Set (×12)', type: 'Road Freight Express', price: 490, qty: 1 },
     ],
     note: 'Please process payment by the due date to avoid delivery disruption.',
   },
@@ -90,9 +90,9 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 0,
     packages: [
-      { description: 'Organic Kitchen Set',   type: 'Road Freight Express',   price: 330, qty: 2 },
-      { description: 'Bamboo Utensil Pack',   type: 'Road Freight Standard',  price: 88,  qty: 3 },
-      { description: 'Glass Storage Jars',    type: 'Ocean Freight Standard', price: 54,  qty: 6 },
+      { description: 'Organic Kitchen Set', type: 'Road Freight Express', price: 330, qty: 2 },
+      { description: 'Bamboo Utensil Pack', type: 'Road Freight Standard', price: 88, qty: 3 },
+      { description: 'Glass Storage Jars', type: 'Ocean Freight Standard', price: 54, qty: 6 },
     ],
     note: 'Paid in full.',
   },
@@ -110,9 +110,9 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 10,
     packages: [
-      { description: 'Pro Yoga Mat Set',       type: 'Road Freight Standard', price: 115, qty: 4 },
-      { description: 'Resistance Band Kit',    type: 'Road Freight Express',  price: 75,  qty: 3 },
-      { description: 'Foam Roller (Heavy)',     type: 'Road Freight Standard', price: 55,  qty: 5 },
+      { description: 'Pro Yoga Mat Set', type: 'Road Freight Standard', price: 115, qty: 4 },
+      { description: 'Resistance Band Kit', type: 'Road Freight Express', price: 75, qty: 3 },
+      { description: 'Foam Roller (Heavy)', type: 'Road Freight Standard', price: 55, qty: 5 },
     ],
     note: 'Please process payment by the due date.',
   },
@@ -130,9 +130,9 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 15,
     packages: [
-      { description: 'Brake Pad Set (Premium)', type: 'Road Freight Express',  price: 185, qty: 4 },
-      { description: 'Oil Filter Pack (×10)',   type: 'Road Freight Standard', price: 45,  qty: 8 },
-      { description: 'Spark Plug Set',          type: 'Road Freight Standard', price: 30,  qty: 12 },
+      { description: 'Brake Pad Set (Premium)', type: 'Road Freight Express', price: 185, qty: 4 },
+      { description: 'Oil Filter Pack (×10)', type: 'Road Freight Standard', price: 45, qty: 8 },
+      { description: 'Spark Plug Set', type: 'Road Freight Standard', price: 30, qty: 12 },
     ],
     note: 'This invoice is overdue. Please remit payment immediately to avoid penalties.',
   },
@@ -150,8 +150,8 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 0,
     packages: [
-      { description: 'LED Smart Bulb Pack',  type: 'Road Freight Standard', price: 79, qty: 6 },
-      { description: 'Motion Sensor Light',  type: 'Road Freight Express',  price: 99, qty: 2 },
+      { description: 'LED Smart Bulb Pack', type: 'Road Freight Standard', price: 79, qty: 6 },
+      { description: 'Motion Sensor Light', type: 'Road Freight Express', price: 99, qty: 2 },
     ],
     note: 'Payment received. Thank you.',
   },
@@ -170,7 +170,7 @@ export const mockInvoices = [
     fee: 0,
     packages: [
       { description: 'Eco Planter Collection', type: 'Road Freight Standard', price: 175, qty: 3 },
-      { description: 'Seed Starter Kit',       type: 'Road Freight Standard', price: 55,  qty: 4 },
+      { description: 'Seed Starter Kit', type: 'Road Freight Standard', price: 55, qty: 4 },
     ],
     note: 'Paid in full. Thank you!',
   },
@@ -188,9 +188,9 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 10,
     packages: [
-      { description: 'Lightweight Hoodie Pack', type: 'Road Freight Express',  price: 120, qty: 3 },
-      { description: 'Autumn Jacket Set',       type: 'Road Freight Standard', price: 180, qty: 2 },
-      { description: 'Lightweight Hoodie Pack', type: 'Road Freight Express',  price: 95,  qty: 2 },
+      { description: 'Lightweight Hoodie Pack', type: 'Road Freight Express', price: 120, qty: 3 },
+      { description: 'Autumn Jacket Set', type: 'Road Freight Standard', price: 180, qty: 2 },
+      { description: 'Lightweight Hoodie Pack', type: 'Road Freight Express', price: 95, qty: 2 },
     ],
     note: 'Please process payment by the due date to avoid delivery disruption. Late fees may apply after 3 business days past due.',
   },
@@ -208,9 +208,9 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 15,
     packages: [
-      { description: 'Solar Panel Kit 400W', type: 'Road Freight Express',   price: 800, qty: 1 },
-      { description: 'Mounting Bracket Set', type: 'Road Freight Standard',  price: 120, qty: 5 },
-      { description: 'Inverter Unit 3kW',    type: 'Road Freight Express',   price: 250, qty: 1 },
+      { description: 'Solar Panel Kit 400W', type: 'Road Freight Express', price: 800, qty: 1 },
+      { description: 'Mounting Bracket Set', type: 'Road Freight Standard', price: 120, qty: 5 },
+      { description: 'Inverter Unit 3kW', type: 'Road Freight Express', price: 250, qty: 1 },
     ],
     note: 'Awaiting payment.',
   },
@@ -228,8 +228,8 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 10,
     packages: [
-      { description: 'Organic Supplement Pack', type: 'Air Freight Express',  price: 140, qty: 5 },
-      { description: 'Vitamin D3 Bundle',       type: 'Air Freight Express',  price: 88,  qty: 4 },
+      { description: 'Organic Supplement Pack', type: 'Air Freight Express', price: 140, qty: 5 },
+      { description: 'Vitamin D3 Bundle', type: 'Air Freight Express', price: 88, qty: 4 },
     ],
     note: 'This invoice is overdue. Please contact us immediately.',
   },
@@ -247,8 +247,8 @@ export const mockInvoices = [
     billTo: SHIP_TO,
     fee: 0,
     packages: [
-      { description: 'Smart Air Purifier',  type: 'Road Freight Express',  price: 350, qty: 2 },
-      { description: 'HEPA Filter Pack',    type: 'Road Freight Standard', price: 70,  qty: 5 },
+      { description: 'Smart Air Purifier', type: 'Road Freight Express', price: 350, qty: 2 },
+      { description: 'HEPA Filter Pack', type: 'Road Freight Standard', price: 70, qty: 5 },
     ],
     note: 'Payment confirmed. Thank you for your business.',
   },

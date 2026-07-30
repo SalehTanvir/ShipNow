@@ -17,7 +17,7 @@ export function PackageStatus() {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-5 lg:p-6 border border-slate-100 h-full flex flex-col hover:shadow-sm transition-shadow">
+    <div className="bg-white rounded-[12px] p-4 md:p-5 border border-slate-100 h-full flex flex-col hover:shadow-sm transition-shadow">
       <div className="flex justify-between items-start mb-6">
         <h3 className="text-[15px] font-bold text-slate-900">Package Status</h3>
         <button className="text-slate-400 hover:text-slate-600">
@@ -31,7 +31,7 @@ export function PackageStatus() {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={cn(
-              "flex-1 text-[12px] font-medium py-1.5 px-3 rounded-md transition-colors",
+              "flex-1 text-[11px] md:text-[12px] font-medium py-1.5 px-1.5 md:px-3 rounded-md transition-colors whitespace-nowrap",
               activeTab === tab ? "bg-[#242628] text-white shadow-sm" : "text-slate-500 hover:text-slate-700"
             )}
           >
