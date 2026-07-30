@@ -59,9 +59,17 @@ export function Sidebar({ isOpen, onClose }) {
         
         {/* Logo */}
         <div className="flex items-center gap-3 px-6 md:px-0 lg:px-6 md:justify-center lg:justify-start py-8">
-          <svg className="h-6 w-auto flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="4" width="4" height="10" transform="skewX(-15)" fill="#a78bfa" />
-            <rect x="11" y="10" width="4" height="10" transform="skewX(-15)" fill="#7c3aed" />
+          <svg width="24" height="24" viewBox="0 0 56.96 56.96" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+            <g transform="translate(5, 5)">
+              {/* Rectangle 3 (Top-Left) */}
+              <g transform="translate(12.8, 1.57) skewX(-18)">
+                <rect x="0" y="0" width="15.38" height="25.04" rx="3" fill="#a78bfa" />
+              </g>
+              {/* Rectangle 2 (Bottom-Right) */}
+              <g transform="translate(26.88, 20.35) skewX(-18)">
+                <rect x="0" y="0" width="15.38" height="25.04" rx="3" fill="#7c3aed" />
+              </g>
+            </g>
           </svg>
           <span className="text-slate-900 font-extrabold italic text-xl tracking-wide block md:hidden lg:block">SHIPNOW</span>
         </div>
@@ -118,16 +126,25 @@ export function Sidebar({ isOpen, onClose }) {
                 key={item.name}
                 to={item.path}
                 title={item.name}
-                className="flex items-center justify-between md:justify-center lg:justify-between px-4 md:px-0 lg:px-4 py-3 rounded-xl text-[14px] font-medium text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                className={({ isActive }) => cn(
+                  "flex items-center justify-between md:justify-center lg:justify-between px-4 md:px-0 lg:px-4 py-3 rounded-xl text-[14px] font-medium transition-colors",
+                  isActive
+                    ? "bg-purple-100/50 text-[#7c3aed]"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                )}
               >
-                <div className="flex items-center gap-3 md:gap-0 lg:gap-3">
-                  <item.icon className="w-5 h-5 text-slate-400 flex-shrink-0" />
-                  <span className="block md:hidden lg:block">{item.name}</span>
-                </div>
-                {item.badge && (
-                  <span className="bg-[#7c3aed] text-white text-[11px] font-bold px-2 py-0.5 rounded-full block md:hidden lg:block">
-                    {item.badge}
-                  </span>
+                {({ isActive }) => (
+                  <>
+                    <div className="flex items-center gap-3 md:gap-0 lg:gap-3">
+                      <item.icon className={cn("w-5 h-5 flex-shrink-0", isActive ? "text-[#7c3aed]" : "text-slate-400")} />
+                      <span className="block md:hidden lg:block">{item.name}</span>
+                    </div>
+                    {item.badge && (
+                      <span className="bg-[#7c3aed] text-white text-[11px] font-bold px-2 py-0.5 rounded-full block md:hidden lg:block">
+                        {item.badge}
+                      </span>
+                    )}
+                  </>
                 )}
               </NavLink>
             ))}

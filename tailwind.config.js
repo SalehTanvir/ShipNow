@@ -5,6 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'sm': '375px',   // Mobile
+      'md': '768px',   // Tablet
+      'lg': '1024px',  // Laptop/Medium Desktop
+      'xl': '1440px',  // Standard Desktop
+      '2xl': '1440px',
+    },
     extend: {
       colors: {
         brand: {
