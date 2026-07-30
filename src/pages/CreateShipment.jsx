@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, Menu } from 'lucide-react';
+import { ArrowLeft, Calendar, ChevronDown, Menu } from 'lucide-react';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { Input } from '../components/common/Input';
 import { Select } from '../components/common/Select';
@@ -8,6 +8,142 @@ import { Checkbox } from '../components/common/Checkbox';
 import { Radio } from '../components/common/Radio';
 import { Toggle } from '../components/common/Toggle';
 import { Button } from '../components/common/Button';
+
+const COUNTRY_OPTIONS = [
+  { code: 'us', dialCode: '+1',   name: 'United States' },
+  { code: 'ca', dialCode: '+1',   name: 'Canada' },
+  { code: 'gb', dialCode: '+44',  name: 'United Kingdom' },
+  { code: 'de', dialCode: '+49',  name: 'Germany' },
+  { code: 'fr', dialCode: '+33',  name: 'France' },
+  { code: 'it', dialCode: '+39',  name: 'Italy' },
+  { code: 'es', dialCode: '+34',  name: 'Spain' },
+  { code: 'au', dialCode: '+61',  name: 'Australia' },
+  { code: 'jp', dialCode: '+81',  name: 'Japan' },
+  { code: 'cn', dialCode: '+86',  name: 'China' },
+  { code: 'in', dialCode: '+91',  name: 'India' },
+  { code: 'bd', dialCode: '+880', name: 'Bangladesh' },
+  { code: 'sg', dialCode: '+65',  name: 'Singapore' },
+  { code: 'ae', dialCode: '+971', name: 'UAE' },
+  { code: 'br', dialCode: '+55',  name: 'Brazil' },
+  { code: 'mx', dialCode: '+52',  name: 'Mexico' },
+  { code: 'za', dialCode: '+27',  name: 'South Africa' },
+  { code: 'ng', dialCode: '+234', name: 'Nigeria' },
+  { code: 'pk', dialCode: '+92',  name: 'Pakistan' },
+  { code: 'id', dialCode: '+62',  name: 'Indonesia' },
+  { code: 'tr', dialCode: '+90',  name: 'Turkey' },
+  { code: 'kr', dialCode: '+82',  name: 'South Korea' },
+  { code: 'nl', dialCode: '+31',  name: 'Netherlands' },
+  { code: 'se', dialCode: '+46',  name: 'Sweden' },
+  { code: 'no', dialCode: '+47',  name: 'Norway' },
+];
+
+function FlagImg({ code, size = 20 }) {
+  return (
+    <img
+      src={`https://flagcdn.com/w${size * 2}/${code}.png`}
+      width={size}
+      height={Math.round(size * 0.75)}
+      alt={code.toUpperCase()}
+      className="rounded-sm object-cover"
+      style={{ width: size, height: Math.round(size * 0.75), display: 'inline-block', flexShrink: 0 }}
+    />
+  );
+}
+
+function PhoneInput({ defaultValue = '', defaultCode = 'us' }) {
+  const [selected, setSelected] = useState(
+    () => COUNTRY_OPTIONS.find((c) => c.code === defaultCode) || COUNTRY_OPTIONS[0]
+  );
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const wrapperRef = useRef(null);
+  const searchRef = useRef(null);
+
+  // Close on outside click
+  useEffect(() => {
+    function handleClick(e) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+        setSearch('');
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  // Focus search when dropdown opens
+  useEffect(() => {
+    if (open && searchRef.current) searchRef.current.focus();
+  }, [open]);
+
+  const filtered = COUNTRY_OPTIONS.filter(
+    (c) =>
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      c.dialCode.includes(search) ||
+      c.code.includes(search.toLowerCase())
+  );
+
+  return (
+    <div ref={wrapperRef} className="relative flex items-center h-11 w-full rounded-lg bg-white border border-slate-200 shadow-sm focus-within:ring-2 focus-within:ring-[#7b5cfa] focus-within:border-transparent transition-all overflow-visible px-0">
+      {/* Country Trigger Button */}
+      <button
+        type="button"
+        onClick={() => { setOpen((v) => !v); setSearch(''); }}
+        className="flex items-center gap-1.5 h-full px-3 border-r border-slate-200 hover:bg-slate-50 transition-colors rounded-l-lg shrink-0 focus:outline-none"
+      >
+        <FlagImg code={selected.code} size={20} />
+        <span className="text-sm font-medium text-slate-700 whitespace-nowrap">{selected.dialCode}</span>
+        <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      {/* Phone input */}
+      <input
+        type="tel"
+        defaultValue={defaultValue}
+        placeholder="408-555-7210"
+        className="w-full h-full bg-transparent text-sm text-slate-900 px-3 focus:outline-none placeholder:text-slate-400 rounded-r-lg"
+      />
+
+      {/* Dropdown */}
+      {open && (
+        <div className="absolute top-[calc(100%+6px)] left-0 z-50 w-64 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden">
+          {/* Search */}
+          <div className="p-2 border-b border-slate-100">
+            <input
+              ref={searchRef}
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search country..."
+              className="w-full px-3 py-1.5 text-sm rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#7b5cfa] placeholder:text-slate-400"
+            />
+          </div>
+          {/* List */}
+          <ul className="max-h-52 overflow-y-auto py-1">
+            {filtered.length === 0 && (
+              <li className="px-4 py-3 text-sm text-slate-400 text-center">No results</li>
+            )}
+            {filtered.map((c) => (
+              <li key={c.code}>
+                <button
+                  type="button"
+                  onClick={() => { setSelected(c); setOpen(false); setSearch(''); }}
+                  className={`flex items-center gap-2.5 w-full px-3 py-2 text-sm hover:bg-[#f3f0ff] transition-colors ${
+                    selected.code === c.code ? 'bg-[#f3f0ff] text-[#7b5cfa] font-semibold' : 'text-slate-700'
+                  }`}
+                >
+                  <FlagImg code={c.code} size={20} />
+                  <span className="flex-1 text-left truncate">{c.name}</span>
+                  <span className="text-slate-400 text-xs shrink-0">{c.dialCode}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function CreateShipment() {
   const navigate = useNavigate();
@@ -57,17 +193,7 @@ export default function CreateShipment() {
                 
                 <div>
                   <label className="block text-[13px] font-semibold text-slate-700 mb-2">Phone Number</label>
-                  <div className="flex gap-2">
-                    <div className="w-24">
-                      <Select 
-                        options={[{label: '🇺🇸 +1', value: '+1'}]} 
-                        defaultValue="+1" 
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <Input placeholder="408-555-7210" defaultValue="408-555-7210" />
-                    </div>
-                  </div>
+                  <PhoneInput defaultValue="408-555-7210" defaultCode="us" />
                 </div>
 
                 <Input label="Pickup Address" placeholder="1120 Birch Street, Portland, OR 97205, USA" defaultValue="1120 Birch Street, Portland, OR 97205, USA" />
@@ -83,17 +209,7 @@ export default function CreateShipment() {
                 
                 <div>
                   <label className="block text-[13px] font-semibold text-slate-700 mb-2">Phone Number</label>
-                  <div className="flex gap-2">
-                    <div className="w-24">
-                      <Select 
-                        options={[{label: '🇺🇸 +1', value: '+1'}]} 
-                        defaultValue="+1" 
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <Input placeholder="786-555-4432" defaultValue="786-555-4432" />
-                    </div>
-                  </div>
+                  <PhoneInput defaultValue="786-555-4432" defaultCode="us" />
                 </div>
 
                 <Input 

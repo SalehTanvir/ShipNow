@@ -26,36 +26,37 @@ export function WarehouseInventory() {
         </div>
       </div>
 
-      {/* ── MOBILE HORIZONTAL LIST VIEW (sm:hidden) ── */}
-      <div className="sm:hidden flex flex-col gap-3.5 pt-1">
-        {mockInventory.map((item, idx) => (
-          <div key={idx} className="flex items-center justify-between gap-3">
-            {/* Horizontal Bar track */}
-            <div className="flex-1 h-[26px] bg-slate-50 rounded-[6px] relative overflow-hidden">
-              <div
-                className={cn(
-                  'h-full rounded-[6px] transition-all duration-700',
-                  item.color
-                )}
-                style={{
-                  width: `${Math.max(item.percentage * 3, 18)}%`,
-                  backgroundImage: item.isStriped
-                    ? `repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.25) 4px, rgba(255,255,255,0.25) 8px)`
-                    : 'none',
-                }}
-              />
-            </div>
+      {/* ── MOBILE HORIZONTAL BAR CHART VIEW (sm:hidden) ── */}
+      <div className="sm:hidden flex flex-col pt-1 divide-y divide-dashed divide-slate-200">
+        {mockInventory.map((item, idx) => {
+          const MAX_PCT = 25; // highest percentage in the data set
+          const fillPct = Math.round((item.percentage / MAX_PCT) * 100);
+          return (
+            <div key={idx} className="flex items-center gap-3 py-2.5">
+              {/* Bar track – fixed width container, fill scales by percentage */}
+              <div className="w-[130px] shrink-0 h-[42px] bg-slate-100 rounded-[8px] overflow-hidden">
+                <div
+                  className={cn('h-full rounded-[8px] transition-all duration-700', item.color)}
+                  style={{
+                    width: `${fillPct}%`,
+                    backgroundImage: item.isStriped
+                      ? `repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.28) 4px, rgba(255,255,255,0.28) 8px)`
+                      : 'none',
+                  }}
+                />
+              </div>
 
-            {/* Label + stats aligned to right */}
-            <div className="text-right shrink-0 min-w-[110px]">
-              <p className="text-[11px] font-medium text-slate-500 leading-tight mb-0.5">{item.category}</p>
-              <div className="flex items-baseline justify-end gap-1.5 leading-none">
-                <span className="text-[11px] font-bold text-slate-900">{item.percentage}%</span>
-                <span className="text-[10px] text-slate-400 font-medium">{item.value}</span>
+              {/* Label + stats aligned to right */}
+              <div className="flex-1 text-right">
+                <p className="text-[12px] font-medium text-slate-500 leading-tight mb-0.5">{item.category}</p>
+                <div className="flex items-baseline justify-end gap-1.5 leading-none">
+                  <span className="text-[12px] font-bold text-slate-900">{item.percentage}%</span>
+                  <span className="text-[11px] text-slate-400 font-medium">· {item.value}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* ── TABLET / DESKTOP VERTICAL BAR CHART (hidden sm:flex) ── */}
