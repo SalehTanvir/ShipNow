@@ -31,7 +31,7 @@ export default function Fleets() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Fleets</h1>
+
             <p className="text-slate-500 text-sm mt-1">Manage and monitor your vessel fleet</p>
           </div>
           <button className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors shadow-sm shadow-purple-200">

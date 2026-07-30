@@ -6,6 +6,7 @@ export function Header({ onMenuClick }) {
   const location = useLocation();
   const navigate = useNavigate();
   const isDashboard = location.pathname === '/' || location.pathname === '/dashboard';
+  const hideSearchAndButton = ['/analytics', '/calendar', '/drivers', '/fleets', '/messages', '/notifications', '/settings', '/tracking'].includes(location.pathname);
 
   const getPageTitle = (pathname) => {
     if (pathname === '/' || pathname === '/dashboard') return 'Dashboard';
@@ -50,24 +51,26 @@ export function Header({ onMenuClick }) {
         </div>
 
         {/* Second Row: Search Bar + Plus Button */}
-        <div className="flex items-center gap-2.5">
-          <div className="flex-1 relative flex items-center bg-[#f2f3f7] rounded-xl px-3 py-2">
-            <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
-            <input
-              type="text"
-              placeholder="Search anything"
-              className="bg-transparent border-0 outline-none w-full text-[14px] text-slate-800 placeholder-slate-400 focus:outline-none p-0"
-            />
-          </div>
+        {!hideSearchAndButton && (
+          <div className="flex items-center gap-2.5">
+            <div className="flex-1 relative flex items-center bg-[#f2f3f7] rounded-xl px-3 py-2">
+              <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
+              <input
+                type="text"
+                placeholder="Search anything"
+                className="bg-transparent border-0 outline-none w-full text-[14px] text-slate-800 placeholder-slate-400 focus:outline-none p-0"
+              />
+            </div>
 
-          <button 
-            onClick={() => navigate('/shipments/new')}
-            className="w-10 h-10 flex-shrink-0 bg-[#2a2b2e] hover:bg-black text-white rounded-xl flex items-center justify-center transition-colors shadow-sm"
-            aria-label="Add New Shipping"
-          >
-            <Plus className="w-5 h-5 stroke-[2.5]" />
-          </button>
-        </div>
+            <button 
+              onClick={() => navigate('/shipments/new')}
+              className="w-10 h-10 flex-shrink-0 bg-[#2a2b2e] hover:bg-black text-white rounded-xl flex items-center justify-center transition-colors shadow-sm"
+              aria-label="Add New Shipping"
+            >
+              <Plus className="w-5 h-5 stroke-[2.5]" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Desktop Header (>= md) */}
@@ -87,25 +90,29 @@ export function Header({ onMenuClick }) {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4">
-            <div className="relative w-[280px] lg:w-[320px]">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-slate-400" />
-              </div>
-              <input
-                type="text"
-                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#7c3aed] focus:border-[#7c3aed] text-sm transition-all"
-                placeholder="Search anything"
-              />
-            </div>
-            
-            <button 
-              onClick={() => navigate('/shipments/new')}
-              className="flex-none flex items-center justify-center gap-2 bg-[#2a2b2e] hover:bg-black text-white px-4 lg:px-5 py-2.5 rounded-xl font-semibold text-[14px] transition-colors whitespace-nowrap"
-            >
-              <Plus className="w-4 h-4 hidden sm:inline" />
-              <span className="hidden lg:inline">Add New Shipping</span>
-              <span className="inline lg:hidden">New Shipping</span>
-            </button>
+            {!hideSearchAndButton && (
+              <>
+                <div className="relative w-[280px] lg:w-[320px]">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Search className="h-4 w-4 text-slate-400" />
+                  </div>
+                  <input
+                    type="text"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#7c3aed] focus:border-[#7c3aed] text-sm transition-all"
+                    placeholder="Search anything"
+                  />
+                </div>
+                
+                <button 
+                  onClick={() => navigate('/shipments/new')}
+                  className="flex-none flex items-center justify-center gap-2 bg-[#2a2b2e] hover:bg-black text-white px-4 lg:px-5 py-2.5 rounded-xl font-semibold text-[14px] transition-colors whitespace-nowrap"
+                >
+                  <Plus className="w-4 h-4 hidden sm:inline" />
+                  <span className="hidden lg:inline">Add New Shipping</span>
+                  <span className="inline lg:hidden">New Shipping</span>
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

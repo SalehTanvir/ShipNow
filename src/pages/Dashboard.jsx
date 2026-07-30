@@ -9,6 +9,9 @@ import { ShipmentMapTracker } from '../components/dashboard/ShipmentMapTracker';
 import { ShipmentAlerts } from '../components/dashboard/ShipmentAlerts';
 import { RecentActivity } from '../components/dashboard/RecentActivity';
 import { RecentShipmentsTable } from '../components/dashboard/RecentShipmentsTable';
+import activeShipmentIcon      from '../components/icons/Active_ShipmentIcon.svg';
+import deliveryPerformanceIcon from '../components/icons/DeliveryPerformanceIcon.svg';
+import revenueIcon             from '../components/icons/RevenueIcon.svg';
 
 export default function Dashboard() {
   return (
@@ -23,7 +26,7 @@ export default function Dashboard() {
             subtitle="shipments"
             change="+9.7%" 
             isPositive={true} 
-            iconSrc="/src/components/icons/Active_ShipmentIcon.svg"
+            iconSrc={activeShipmentIcon}
           />
           <StatCard 
             title="Delivery Performance" 
@@ -31,14 +34,14 @@ export default function Dashboard() {
             subtitle="on-time"
             change="-1.2%" 
             isPositive={false} 
-            iconSrc="/src/components/icons/DeliveryPerformanceIcon.svg"
+            iconSrc={deliveryPerformanceIcon}
           />
           <StatCard 
             title="Revenue" 
             value="$82,450" 
             change="+12.6%" 
             isPositive={true} 
-            iconSrc="/src/components/icons/RevenueIcon.svg"
+            iconSrc={revenueIcon}
           />
         </div>
 

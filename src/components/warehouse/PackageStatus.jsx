@@ -16,6 +16,10 @@ export function PackageStatus() {
     }
   };
 
+  const filtered = mockPackageStatus.filter((pkg) => {
+    return activeTab === 'All' || pkg.status === activeTab;
+  });
+
   return (
     <div className="bg-white rounded-[12px] p-4 md:p-5 border border-slate-100 h-full flex flex-col hover:shadow-sm transition-shadow">
       <div className="flex justify-between items-start mb-6">
@@ -41,7 +45,7 @@ export function PackageStatus() {
       </div>
 
       <div className="flex flex-col gap-4">
-        {mockPackageStatus.map((pkg, idx) => (
+        {filtered.map((pkg, idx) => (
           <div key={idx} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#7b5cfa]/10 flex items-center justify-center text-[#7b5cfa] shrink-0">

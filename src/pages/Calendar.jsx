@@ -55,7 +55,7 @@ export default function Calendar() {
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Calendar</h1>
+
             <p className="text-slate-500 text-sm mt-1">Shipment schedules and operational events</p>
           </div>
         </div>

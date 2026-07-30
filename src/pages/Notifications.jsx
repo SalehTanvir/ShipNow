@@ -21,7 +21,6 @@ export default function Notifications() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Notifications</h1>
             <p className="text-slate-500 text-sm mt-1">System alerts, status updates, and operational logs</p>
           </div>
           <button className="text-xs font-semibold text-purple-600 hover:text-purple-700">

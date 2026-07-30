@@ -19,7 +19,7 @@ export default function Analytics() {
         {/* Page Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Analytics</h1>
+        
             <p className="text-slate-500 text-sm mt-1">Performance overview for the current period</p>
           </div>
           <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm font-medium text-slate-600 shadow-sm">

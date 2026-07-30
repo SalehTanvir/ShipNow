@@ -14,7 +14,6 @@ export default function Messages() {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Messages</h1>
           <p className="text-slate-500 text-sm mt-1">Operational communications and dispatch chat</p>
         </div>
 

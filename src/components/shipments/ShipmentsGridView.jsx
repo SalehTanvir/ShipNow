@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, Filter, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ShipmentCard } from './ShipmentCard';
 
 export function ShipmentsGridView({ data }) {
   const tabs = ['All', 'Delivered', 'In Transit', 'Processing', 'Out for Delivery'];
+  const [selectedStatus, setSelectedStatus] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filtered = data.filter((shipment) => {
+    const matchStatus = selectedStatus === 'All' || shipment.status === selectedStatus;
+    const matchSearch = 
+      shipment.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      shipment.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      shipment.carrier.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchStatus && matchSearch;
+  });
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -12,11 +23,12 @@ export function ShipmentsGridView({ data }) {
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
         {/* Tabs */}
         <div className="flex items-center gap-1 overflow-x-auto pb-2 xl:pb-0 hide-scrollbar">
-          {tabs.map((tab, idx) => (
+          {tabs.map((tab) => (
             <button
               key={tab}
+              onClick={() => setSelectedStatus(tab)}
               className={`whitespace-nowrap px-4 py-2 rounded-xl text-[13px] font-medium transition-colors ${
-                idx === 0 
+                selectedStatus === tab 
                   ? 'bg-slate-800 text-white' 
                   : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
               }`}
@@ -33,6 +45,8 @@ export function ShipmentsGridView({ data }) {
             <input 
               type="text" 
               placeholder="Search Shipment" 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full sm:w-[240px] pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all placeholder:text-slate-400 shadow-sm"
             />
           </div>
@@ -51,7 +65,7 @@ export function ShipmentsGridView({ data }) {
 
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {data.map((shipment) => (
+        {filtered.map((shipment) => (
           <ShipmentCard key={shipment.id} data={shipment} />
         ))}
       </div>

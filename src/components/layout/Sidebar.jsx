@@ -4,6 +4,19 @@ import { ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+import dashboardIcon       from '../icons/dashboard_Icon.svg';
+import analyticsIcon       from '../icons/analytics_icon.svg';
+import calendarIcon        from '../icons/calender_icon.svg';
+import shipmentsIcon       from '../icons/shipments_icon.svg';
+import trackingIcon        from '../icons/tracking_icon.svg';
+import warehouseIcon       from '../icons/warehouse_icon.svg';
+import fleetsIcon          from '../icons/fleets_icon.svg';
+import driversIcon         from '../icons/drivers_icon.svg';
+import invoiceIcon         from '../icons/invoiceAndbilling_icon.svg';
+import messageIcon         from '../icons/message_icon.svg';
+import notificationIcon    from '../icons/notification_icon.svg';
+import settingIcon         from '../icons/setting_icon.svg';
+
 const cn = (...inputs) => {
   return twMerge(clsx(inputs));
 };
@@ -19,21 +32,21 @@ const SvgIcon = ({ src, active }) => (
 );
 
 const NAV_ITEMS = [
-  { name: 'Dashboard',        icon: '/src/components/icons/dashboard_Icon.svg',           path: '/dashboard' },
-  { name: 'Analytics',        icon: '/src/components/icons/analytics_icon.svg',           path: '/analytics' },
-  { name: 'Calendar',         icon: '/src/components/icons/calender_icon.svg',            path: '/calendar' },
-  { name: 'Shipments',        icon: '/src/components/icons/shipments_icon.svg',           path: '/shipments' },
-  { name: 'Tracking',         icon: '/src/components/icons/tracking_icon.svg',            path: '/tracking' },
-  { name: 'Warehouse',        icon: '/src/components/icons/warehouse_icon.svg',           path: '/warehouse' },
-  { name: 'Fleets',           icon: '/src/components/icons/fleets_icon.svg',              path: '/fleets' },
-  { name: 'Drivers',          icon: '/src/components/icons/drivers_icon.svg',             path: '/drivers' },
-  { name: 'Invoices & Billing', icon: '/src/components/icons/invoiceAndbilling_icon.svg', path: '/invoices' },
+  { name: 'Dashboard',        icon: dashboardIcon,    path: '/dashboard' },
+  { name: 'Analytics',        icon: analyticsIcon,    path: '/analytics' },
+  { name: 'Calendar',         icon: calendarIcon,     path: '/calendar' },
+  { name: 'Shipments',        icon: shipmentsIcon,    path: '/shipments' },
+  { name: 'Tracking',         icon: trackingIcon,     path: '/tracking' },
+  { name: 'Warehouse',        icon: warehouseIcon,    path: '/warehouse' },
+  { name: 'Fleets',           icon: fleetsIcon,       path: '/fleets' },
+  { name: 'Drivers',          icon: driversIcon,      path: '/drivers' },
+  { name: 'Invoices & Billing', icon: invoiceIcon,    path: '/invoices' },
 ];
 
 const BOTTOM_NAV_ITEMS = [
-  { name: 'Message',      icon: '/src/components/icons/message_icon.svg',      path: '/messages',      badge: '19' },
-  { name: 'Notification', icon: '/src/components/icons/notification_icon.svg', path: '/notifications', badge: '5' },
-  { name: 'Settings',     icon: '/src/components/icons/setting_icon.svg',      path: '/settings' },
+  { name: 'Message',      icon: messageIcon,      path: '/messages',      badge: '19' },
+  { name: 'Notification', icon: notificationIcon, path: '/notifications', badge: '5' },
+  { name: 'Settings',     icon: settingIcon,      path: '/settings' },
 ];
 
 export function Sidebar({ isOpen, onClose }) {

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, Filter, ChevronDown, Package, Clock, Truck, CheckCircle2, ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import { StatCard } from '../dashboard/StatCard';
 import { CompanyLogo } from '../common/CompanyLogo';
 
 export function ShipmentsTableView({ data }) {
   const tabs = ['All', 'Completed', 'Delivery', 'Pending'];
+  const [selectedTab, setSelectedTab] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const getStatusDot = (status) => {
     switch (status) {
@@ -25,6 +27,28 @@ export function ShipmentsTableView({ data }) {
       default: return status;
     }
   };
+
+  const filterByTab = (shipmentStatus) => {
+    switch (selectedTab) {
+      case 'Completed':
+        return shipmentStatus === 'Delivered';
+      case 'Delivery':
+        return shipmentStatus === 'In Transit' || shipmentStatus === 'Out for Delivery';
+      case 'Pending':
+        return shipmentStatus === 'Processing';
+      default:
+        return true;
+    }
+  };
+
+  const filtered = data.filter((shipment) => {
+    const matchTab = filterByTab(shipment.status);
+    const matchSearch = 
+      shipment.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      shipment.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      shipment.carrier.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchTab && matchSearch;
+  });
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -70,11 +94,12 @@ export function ShipmentsTableView({ data }) {
         {/* Toolbar */}
         <div className="p-5 flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-slate-100">
           <div className="flex items-center gap-1 overflow-x-auto pb-2 xl:pb-0 hide-scrollbar">
-            {tabs.map((tab, idx) => (
+            {tabs.map((tab) => (
               <button
                 key={tab}
+                onClick={() => setSelectedTab(tab)}
                 className={`whitespace-nowrap px-4 py-2 rounded-xl text-[13px] font-medium transition-colors ${
-                  idx === 0 
+                  selectedTab === tab 
                     ? 'bg-slate-800 text-white' 
                     : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
                 }`}
@@ -90,6 +115,8 @@ export function ShipmentsTableView({ data }) {
               <input 
                 type="text" 
                 placeholder="Search id, company, etc" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full sm:w-[220px] pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all placeholder:text-slate-400"
               />
             </div>
@@ -122,7 +149,7 @@ export function ShipmentsTableView({ data }) {
               </tr>
             </thead>
             <tbody>
-              {data.map((row, idx) => (
+              {filtered.map((row, idx) => (
                 <tr key={idx} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
                   <td className="py-4 px-5 align-top">
                     <div className="flex items-start gap-3">

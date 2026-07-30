@@ -1,26 +1,40 @@
 import React from 'react';
 
+import techGearLogo        from '../icons/TechGearInc.svg';
+import styleHubLogo        from '../icons/StyleHubCo.svg';
+import freshNestLogo       from '../icons/FreshNest.svg';
+import fitPlusLogo         from '../icons/FitPlusGear.svg';
+import autoPartsLogo       from '../icons/AutoPartsPro.svg';
+import ecoLightsLogo       from '../icons/EcoLights.svg';
+import greenHavenLogo      from '../icons/GreenHaven.svg';
+import modaWearLogo        from '../icons/ModaWear.svg';
+import smartApplianceLogo  from '../icons/SmartAppliance.svg';
+import sunCoreLogo         from '../icons/SunCorePanels.svg';
+import quickPartsLogo      from '../icons/QuickParts.svg';
+import vitaFreshLogo       from '../icons/VitaFresh.svg';
+import styleDepotLogo      from '../icons/StyleDepot.svg';
+
 const COMPANY_LOGOS = {
-  'TechGear Inc.': '/src/components/icons/TechGearInc.svg',
-  'TechGear': '/src/components/icons/TechGearInc.svg',
-  'StyleHub Co.': '/src/components/icons/StyleHubCo.svg',
-  'StyleHub': '/src/components/icons/StyleHubCo.svg',
-  'FreshNest': '/src/components/icons/FreshNest.svg',
-  'FitPlus Gear': '/src/components/icons/FitPlusGear.svg',
-  'FitPlus': '/src/components/icons/FitPlusGear.svg',
-  'AutoParts Pro': '/src/components/icons/AutoPartsPro.svg',
-  'AutoParts': '/src/components/icons/AutoPartsPro.svg',
-  'EcoLights': '/src/components/icons/EcoLights.svg',
-  'GreenHaven': '/src/components/icons/GreenHaven.svg',
-  'ModaWear': '/src/components/icons/ModaWear.svg',
-  'Moda Wear': '/src/components/icons/ModaWear.svg',
-  'SmartAppliance': '/src/components/icons/SmartAppliance.svg',
-  'Smart Appliance': '/src/components/icons/SmartAppliance.svg',
-  'SunCore Panels': '/src/components/icons/SunCorePanels.svg',
-  'SunCore': '/src/components/icons/SunCorePanels.svg',
-  'QuickParts': '/src/components/icons/QuickParts.svg',
-  'VitaFresh': '/src/components/icons/VitaFresh.svg',
-  'StyleDepot': '/src/components/icons/StyleDepot.svg',
+  'TechGear Inc.':    techGearLogo,
+  'TechGear':         techGearLogo,
+  'StyleHub Co.':     styleHubLogo,
+  'StyleHub':         styleHubLogo,
+  'FreshNest':        freshNestLogo,
+  'FitPlus Gear':     fitPlusLogo,
+  'FitPlus':          fitPlusLogo,
+  'AutoParts Pro':    autoPartsLogo,
+  'AutoParts':        autoPartsLogo,
+  'EcoLights':        ecoLightsLogo,
+  'GreenHaven':       greenHavenLogo,
+  'ModaWear':         modaWearLogo,
+  'Moda Wear':        modaWearLogo,
+  'SmartAppliance':   smartApplianceLogo,
+  'Smart Appliance':  smartApplianceLogo,
+  'SunCore Panels':   sunCoreLogo,
+  'SunCore':          sunCoreLogo,
+  'QuickParts':       quickPartsLogo,
+  'VitaFresh':        vitaFreshLogo,
+  'StyleDepot':       styleDepotLogo,
 };
 
 const normalize = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');

@@ -16,7 +16,7 @@ export default function Shipments() {
   };
 
   return (
-    <DashboardLayout showHeader={false}>
+    <DashboardLayout showHeader={false} title="Shipments">
       <div className="flex flex-col gap-6 max-w-[1600px] mx-auto min-h-full">
         {/* Header Row */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
